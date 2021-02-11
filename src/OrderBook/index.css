@@ -1,0 +1,76 @@
+.order-book {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.order-book__tables {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.order-book__table:first-child {
+  margin-right: 40px;
+}
+
+.order-book__table {
+  border-collapse: collapse;
+  min-width: 300px;
+}
+
+.order-book__table th {
+  text-transform: capitalize;
+}
+
+.order-book__table th,
+.order-book__table td {
+  border: 1px solid gray;
+  padding: 4px 8px;
+}
+
+.order-book__table--bids .order-book__td--size {
+  color: green;
+}
+
+.order-book__table--asks .order-book__td--size {
+  color: red;
+}
+
+@keyframes flash-red {
+  0% {
+    color: black;
+  }
+  50% {
+    color: red;
+  }
+  100% {
+    color: black;
+  }
+}
+
+.flash-red {
+  animation-name: flash-red;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes flash-green {
+  0% {
+    color: black;
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color: black;
+  }
+}
+
+.flash-green {
+  animation-name: flash-green;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
