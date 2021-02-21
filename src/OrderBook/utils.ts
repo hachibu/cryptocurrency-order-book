@@ -57,3 +57,7 @@ export const currencyPairs: [string, string][] = [
   ['usd','cusd'],
   ['usd','ceur']
 ]
+
+export const currencyOptions = currencyPairs.map(
+  ([a, b]) => ({ value: a + b, label: a + '-' + b })
+)

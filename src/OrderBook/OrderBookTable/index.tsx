@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useMemo } from 'react'
 import { parseCurrencyPair } from '../utils'
 import { DataRow } from '../types'
 
@@ -8,13 +8,19 @@ interface OrderBookTableProps {
   dataRows: DataRow[]
 }
 
-const OrderBookTable: FC<OrderBookTableProps> = (props) => {
-  const [priceType, sizeType] = parseCurrencyPair(props.currencyPair)
-  const headers = [`price (${priceType})`, `size (${sizeType})`]
+const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
+  const [priceType, sizeType] = useMemo(
+    () => parseCurrencyPair(props.currencyPair),
+    [props.currencyPair]
+  )
 
   const getClassName = (changed: boolean): string => {
     if (changed) {
-      return props.side === 'asks' ? 'flash-red' : 'flash-green'
+      if (props.side === 'asks') {
+        return 'flash-red'
+      } else if (props.side === 'bids') {
+        return 'flash-green'
+      }
     }
     return ''
   }
@@ -26,9 +32,8 @@ const OrderBookTable: FC<OrderBookTableProps> = (props) => {
           <th colSpan={2}>{props.side}</th>
         </tr>
         <tr>
-          {headers.map(header => (<th key={header}>
-            {header}
-          </th>))}
+          <th>price ({priceType})</th>
+          <th>size ({sizeType})</th>
         </tr>
       </thead>
       <tbody>
@@ -41,6 +46,6 @@ const OrderBookTable: FC<OrderBookTableProps> = (props) => {
       </tbody>
     </table>
   )
-}
+})
 
 export default OrderBookTable

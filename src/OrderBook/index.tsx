@@ -1,15 +1,12 @@
 import React, { FC, useState, useEffect } from 'react'
 import './index.css'
-import { dataRowEq, currencyPairs } from './utils'
+import { dataRowEq, currencyOptions } from './utils'
 import { Data } from './types'
 import OrderBookTable from './OrderBookTable'
 
-const OrderBook: FC = (props) => {
+const OrderBook: FC = React.memo(() => {
   const [data, setData] = useState<Data>({ asks: [], bids: [] })
   const [currencyPair, setCurrencyPair] = useState('btcusd')
-  const currencyPairOptions = currencyPairs.map(
-    ([a, b]) => ({ value: a + b, label: a + '-' + b })
-  )
 
   useEffect(() => {
     const ws = new WebSocket('wss://ws.bitstamp.net')
@@ -69,7 +66,7 @@ const OrderBook: FC = (props) => {
         <div>Select Currency Pair</div>
         <select value={currencyPair}
                 onChange={(e) => setCurrencyPair(e.target.value)}>
-          {currencyPairOptions.map(({ value, label }) => (
+          {currencyOptions.map(({ value, label }) => (
             <option key={value} value={value}>{label}</option>
           ))}
         </select>
@@ -80,6 +77,6 @@ const OrderBook: FC = (props) => {
       </div>
     </div>
   )
-}
+})
 
 export default OrderBook
