@@ -37,8 +37,8 @@ const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
         </tr>
       </thead>
       <tbody>
-        {props.dataRows.map(([price, size, changed], index) => (
-          <tr key={index}>
+        {props.dataRows.map(([price, size, changed]) => (
+          <tr key={price}>
             <td className={getClassName(changed)}>{price}</td>
             <td className="order-book__td order-book__td--size">{size}</td>
           </tr>
