@@ -14,7 +14,7 @@ const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
     [props.currencyPair]
   )
 
-  const getClassName = (changed: boolean): string => {
+  const getPriceClassName = (changed: boolean): string => {
     if (changed) {
       if (props.side === 'asks') {
         return 'flash-red'
@@ -25,22 +25,26 @@ const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
     return ''
   }
 
+  const getSizeClassName = (): string => {
+    return props.side === 'bids' ? 'text-success' : 'text-danger'
+  }
+
   return (
-    <table className={`order-book__table order-book__table--${props.side}`}>
+    <table className="table table-dark table-striped w-50">
       <thead>
         <tr>
-          <th colSpan={2}>{props.side}</th>
+          <th className="text-capitalize" colSpan={2}>{props.side}</th>
         </tr>
         <tr>
-          <th>price ({priceType})</th>
-          <th>size ({sizeType})</th>
+          <th>Price ({priceType})</th>
+          <th>Size ({sizeType})</th>
         </tr>
       </thead>
       <tbody>
         {props.dataRows.map(([price, size, changed]) => (
           <tr key={price}>
-            <td className={getClassName(changed)}>{price}</td>
-            <td className="order-book__td order-book__td--size">{size}</td>
+            <td className={getPriceClassName(changed)}>{price}</td>
+            <td className={getSizeClassName()}>{size}</td>
           </tr>
         ))}
       </tbody>

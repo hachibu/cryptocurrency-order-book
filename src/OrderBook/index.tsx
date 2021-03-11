@@ -45,17 +45,23 @@ const OrderBook: FC = React.memo(() => {
   }, [currencyPair])
 
   return (
-    <div className="order-book">
-      <h3>
-        <div>Select Currency Pair</div>
-        <select value={currencyPair}
-                onChange={(e) => setCurrencyPair(e.target.value)}>
-          {currencyOptions.map(({ value, label }) => (
-            <option key={value} value={value}>{label}</option>
-          ))}
-        </select>
-      </h3>
-      <div className="order-book__tables">
+    <div className="text-white">
+      <div className="d-flex align-items-center justify-content-between m-3">
+        <div>
+          <b>Cryptocurrency Order Book</b>
+        </div>
+        <div>
+          <b className="mr-3">Currency Pair</b>
+          <select value={currencyPair}
+                  className="form-select"
+                  onChange={(e) => setCurrencyPair(e.target.value)}>
+            {currencyOptions.map(({ value, label }) => (
+              <option key={value} value={value}>{label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+      <div className="d-flex">
         <OrderBookTable side="bids" currencyPair={currencyPair} dataRows={data.bids} />
         <OrderBookTable side="asks" currencyPair={currencyPair} dataRows={data.asks} />
       </div>

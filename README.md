@@ -2,4 +2,4 @@
 
 A cryptocurrency order book using React and the Bitstamp WebSockets API.
 
-https://hachibu.github.io/cryptocurrency-order-book/
+Demo: https://hachibu.github.io/cryptocurrency-order-book/
