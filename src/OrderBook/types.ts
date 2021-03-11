@@ -1,4 +1,4 @@
-export type DataRow = [number, number, boolean]
+export type DataRow = [price: string, size: string, updated: boolean]
 
 export interface Data {
   asks: DataRow[]

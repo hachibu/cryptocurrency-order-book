@@ -1,8 +1,12 @@
 import React, { FC, useState, useEffect } from 'react'
 import './index.css'
-import { dataRowEq, currencyOptions } from './utils'
+import { currencyOptions } from './utils'
 import { Data } from './types'
-import OrderBookTable from './OrderBookTable'
+import OrderBookTable from '../OrderBookTable'
+
+function rowShouldUpdate(newRow: [string, string], oldRow: [string, string, boolean]): boolean {
+  return !oldRow ? true : newRow[0] !== oldRow[0] || newRow[1] !== oldRow[1]
+}
 
 const OrderBook: FC = React.memo(() => {
   const [data, setData] = useState<Data>({ asks: [], bids: [] })
@@ -19,37 +23,17 @@ const OrderBook: FC = React.memo(() => {
     ws.onmessage = (event) => {
       const msg = JSON.parse(event.data)
       if (msg.event === 'bts:subscription_succeeded') {
-      }
-      else if (msg.event === 'data') {
+      } else if (msg.event === 'data') {
         setData(data => {
           let newData: Data = {
             asks: [],
             bids: []
           }
-          if (data.asks.length === 0 && data.bids.length === 0) {
-            for (let i = 0; i < 100; i++) {
-              let ask = msg.data.asks[i]
-              let bid = msg.data.bids[i]
-              newData.asks.push(ask.concat(true))
-              newData.bids.push(bid.concat(true))
-            }
-          } else {
-            newData.asks = [...data.asks]
-            newData.bids = [...data.bids]
-            for (let i = 0; i < 100; i++) {
-              let ask = msg.data.asks[i]
-              let bid = msg.data.bids[i]
-              if (dataRowEq(ask, newData.asks[i])) {
-                newData.asks[i][2] = false
-              } else {
-                newData.asks[i] = ask.concat(true)
-              }
-              if (dataRowEq(bid, newData.bids[i])) {
-                newData.bids[i][2] = false
-              } else {
-                newData.bids[i] = bid.concat(true)
-              }
-            }
+          for (let i = 0; i < 100; i++) {
+            let newAsk: [string, string] = msg.data.asks[i]
+            let newBid: [string, string] = msg.data.bids[i]
+            newData.asks[i] = [...newAsk, rowShouldUpdate(newAsk, data.asks[i])]
+            newData.bids[i] = [...newBid, rowShouldUpdate(newBid, data.bids[i])]
           }
           return newData
         })

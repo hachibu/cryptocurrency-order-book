@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react'
-import { parseCurrencyPair } from '../utils'
-import { DataRow } from '../types'
+import { parseCurrencyPair } from '../OrderBook/utils'
+import { DataRow } from '../OrderBook/types'
 
 interface OrderBookTableProps {
   side: string

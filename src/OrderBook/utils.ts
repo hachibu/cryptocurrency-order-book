@@ -1,13 +1,7 @@
-import { DataRow } from './types'
-
 export function parseCurrencyPair(currencyPair: string): [string, string] {
   const price = currencyPair.slice(3)
   const size = currencyPair.slice(0, 3)
   return [price.toUpperCase(), size.toUpperCase()]
-}
-
-export function dataRowEq(a: DataRow, b: DataRow): boolean {
-  return a[0] === b[0] && a[1] === b[1]
 }
 
 export const currencyPairs: [string, string][] = [
