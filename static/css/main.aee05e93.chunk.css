@@ -1,0 +1,2 @@
+.table td{height:50px;width:50%;vertical-align:middle}@keyframes flash-red{0%{color:#fff}50%{color:red}to{color:#fff}}.flash-red{animation-name:flash-red;animation-duration:.5s;animation-iteration-count:1;animation-timing-function:ease-in-out}@keyframes flash-green{0%{color:#fff}50%{color:green}to{color:#fff}}.flash-green{animation-name:flash-green;animation-duration:.5s;animation-iteration-count:1;animation-timing-function:ease-in-out}
+/*# sourceMappingURL=main.aee05e93.chunk.css.map */

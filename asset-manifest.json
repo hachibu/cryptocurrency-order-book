@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/cryptocurrency-order-book/static/css/main.aee05e93.chunk.css",
+    "main.js": "/cryptocurrency-order-book/static/js/main.df8d6335.chunk.js",
+    "main.js.map": "/cryptocurrency-order-book/static/js/main.df8d6335.chunk.js.map",
+    "runtime-main.js": "/cryptocurrency-order-book/static/js/runtime-main.6f7da826.js",
+    "runtime-main.js.map": "/cryptocurrency-order-book/static/js/runtime-main.6f7da826.js.map",
+    "static/css/2.658248ec.chunk.css": "/cryptocurrency-order-book/static/css/2.658248ec.chunk.css",
+    "static/js/2.aa35112c.chunk.js": "/cryptocurrency-order-book/static/js/2.aa35112c.chunk.js",
+    "static/js/2.aa35112c.chunk.js.map": "/cryptocurrency-order-book/static/js/2.aa35112c.chunk.js.map",
+    "index.html": "/cryptocurrency-order-book/index.html",
+    "static/css/2.658248ec.chunk.css.map": "/cryptocurrency-order-book/static/css/2.658248ec.chunk.css.map",
+    "static/css/main.aee05e93.chunk.css.map": "/cryptocurrency-order-book/static/css/main.aee05e93.chunk.css.map",
+    "static/js/2.aa35112c.chunk.js.LICENSE.txt": "/cryptocurrency-order-book/static/js/2.aa35112c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6f7da826.js",
+    "static/css/2.658248ec.chunk.css",
+    "static/js/2.aa35112c.chunk.js",
+    "static/css/main.aee05e93.chunk.css",
+    "static/js/main.df8d6335.chunk.js"
+  ]
+}
