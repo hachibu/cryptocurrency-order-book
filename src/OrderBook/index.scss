@@ -1,0 +1,32 @@
+$colors: (red, green);
+
+@each $color in $colors {
+  @keyframes color-#{$color} {
+    0% { color: white; }
+    50% { color: $color; }
+    100% { color: white; }
+  }
+}
+
+.order-book-table {
+  th {
+    font-weight: normal;
+  }
+
+  td {
+    height: 50px;
+    vertical-align: middle;
+    width: 50%;
+  }
+
+  .flash {
+    $duration: 500ms;
+    $easing: ease-in-out;
+
+    @each $color in $colors {
+      &--#{$color} {
+        animation: color-#{$color} $duration $easing;
+      }
+    }
+  }
+}

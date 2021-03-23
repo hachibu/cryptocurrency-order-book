@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
-import './index.css'
+import './index.scss'
 import { currencyOptions } from './utils'
 import { Data } from './types'
 import OrderBookTable from '../OrderBookTable'
@@ -48,10 +48,10 @@ const OrderBook: FC = React.memo(() => {
     <div className="text-white">
       <div className="d-flex align-items-center justify-content-between m-3">
         <div>
-          <b>Cryptocurrency Order Book</b>
+          Cryptocurrency Order Book
         </div>
         <div>
-          <b className="mr-3">Currency Pair</b>
+          <span className="mr-3">Currency Pair</span>
           <select value={currencyPair}
                   className="form-select"
                   onChange={(e) => setCurrencyPair(e.target.value)}>

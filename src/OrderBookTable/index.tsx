@@ -17,9 +17,9 @@ const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
   const getPriceClassName = (changed: boolean): string => {
     if (changed) {
       if (props.side === 'asks') {
-        return 'flash-red'
+        return 'flash--red'
       } else if (props.side === 'bids') {
-        return 'flash-green'
+        return 'flash--green'
       }
     }
     return ''
@@ -30,7 +30,7 @@ const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
   }
 
   return (
-    <table className="table table-dark table-striped w-50">
+    <table className="order-book-table table table-dark table-striped w-50">
       <thead>
         <tr>
           <th className="text-capitalize" colSpan={2}>{props.side}</th>
