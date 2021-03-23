@@ -1,0 +1,2 @@
+@keyframes color-red{0%{color:#fff}50%{color:red}to{color:#fff}}@keyframes color-green{0%{color:#fff}50%{color:green}to{color:#fff}}.order-book-table th{font-weight:400}.order-book-table td{height:50px;vertical-align:middle;width:50%}.order-book-table .flash--red{animation:color-red .5s ease-in-out}.order-book-table .flash--green{animation:color-green .5s ease-in-out}
+/*# sourceMappingURL=main.c298a7d6.chunk.css.map */
