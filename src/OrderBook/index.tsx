@@ -3,6 +3,7 @@ import './index.scss'
 import { currencyOptions } from './utils'
 import { Data } from './types'
 import OrderBookTable from '../OrderBookTable'
+import BitstampWebSocket from '../BitstampWebSocket'
 
 function rowShouldUpdate(newRow: [string, string], oldRow: [string, string, boolean]): boolean {
   return !oldRow ? true : newRow[0] !== oldRow[0] || newRow[1] !== oldRow[1]
@@ -13,17 +14,13 @@ const OrderBook: FC = React.memo(() => {
   const [currencyPair, setCurrencyPair] = useState('btcusd')
 
   useEffect(() => {
-    const ws = new WebSocket('wss://ws.bitstamp.net')
-    ws.onopen = () => {
-      ws.send(JSON.stringify({
-        event: 'bts:subscribe',
-        data: { channel: `order_book_${currencyPair}` }
-      }))
-    }
-    ws.onmessage = (event) => {
+    const ws = new BitstampWebSocket()
+
+    ws.onOpen(() => ws.subscribe({ channel: `order_book_${currencyPair}` }))
+
+    ws.onMessage(event => {
       const msg = JSON.parse(event.data)
-      if (msg.event === 'bts:subscription_succeeded') {
-      } else if (msg.event === 'data') {
+      if (msg.event === 'data') {
         setData(data => {
           let newData: Data = {
             asks: [],
@@ -37,23 +34,19 @@ const OrderBook: FC = React.memo(() => {
           }
           return newData
         })
-      } else {
-        ws.close()
       }
-    }
+    })
+
     return () => ws.close()
   }, [currencyPair])
 
   return (
     <div className="text-white">
-      <div className="d-flex align-items-center justify-content-between m-3">
+      <div className="d-flex align-items-center justify-content-between m-2">
+        <h5 className="m-0">Cryptocurrency Order Book</h5>
         <div>
-          Cryptocurrency Order Book
-        </div>
-        <div>
-          <span className="mr-3">Currency Pair</span>
           <select value={currencyPair}
-                  className="form-select"
+                  className="form-select form-select-sm"
                   onChange={(e) => setCurrencyPair(e.target.value)}>
             {currencyOptions.map(({ value, label }) => (
               <option key={value} value={value}>{label}</option>
