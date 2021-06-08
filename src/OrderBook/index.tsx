@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { memo, FC, useState, useEffect } from 'react'
 import './index.scss'
 import { currencyOptions } from './utils'
 import { Data } from './types'
@@ -9,7 +9,7 @@ function rowShouldUpdate(newRow: [string, string], oldRow: [string, string, bool
   return !oldRow ? true : newRow[0] !== oldRow[0] || newRow[1] !== oldRow[1]
 }
 
-const OrderBook: FC = React.memo(() => {
+const OrderBook: FC = () => {
   const [data, setData] = useState<Data>({ asks: [], bids: [] })
   const [currencyPair, setCurrencyPair] = useState('btcusd')
 
@@ -60,6 +60,6 @@ const OrderBook: FC = React.memo(() => {
       </div>
     </div>
   )
-})
+}
 
-export default OrderBook
+export default memo(OrderBook)

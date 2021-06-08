@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { memo, FC } from 'react'
 import OrderBook from '../OrderBook'
 
-const App: FC = React.memo(() => <OrderBook />)
+const App: FC = () => <OrderBook />
 
-export default App
+export default memo(App)

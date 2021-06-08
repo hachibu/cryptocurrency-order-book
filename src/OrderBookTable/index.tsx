@@ -1,26 +1,26 @@
-import React, { FC, useMemo } from 'react'
+import React, { memo, FC, useMemo } from 'react'
 import { parseCurrencyPair } from '../OrderBook/utils'
-import { DataRow } from '../OrderBook/types'
+import { DataRow, Side } from '../OrderBook/types'
 
 interface OrderBookTableProps {
-  side: string
+  side: Side
   currencyPair: string
   dataRows: DataRow[]
 }
 
-const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
+const OrderBookTable: FC<OrderBookTableProps> = (props) => {
   const [priceType, sizeType] = useMemo(
     () => parseCurrencyPair(props.currencyPair),
     [props.currencyPair]
   )
 
   const getPriceClassName = (changed: boolean): string => {
+    const classNames: Record<Side, string> = {
+      asks: 'flash--red',
+      bids: 'flash--green'
+    };
     if (changed) {
-      if (props.side === 'asks') {
-        return 'flash--red'
-      } else if (props.side === 'bids') {
-        return 'flash--green'
-      }
+      return classNames[props.side]
     }
     return ''
   }
@@ -50,6 +50,6 @@ const OrderBookTable: FC<OrderBookTableProps> = React.memo((props) => {
       </tbody>
     </table>
   )
-})
+}
 
-export default OrderBookTable
+export default memo(OrderBookTable)

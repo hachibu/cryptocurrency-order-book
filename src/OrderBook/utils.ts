@@ -4,7 +4,20 @@ export function parseCurrencyPair(currencyPair: string): [string, string] {
   return [price.toUpperCase(), size.toUpperCase()]
 }
 
-export const currencyPairs: [string, string][] = [
+export type Currency = 'btc'
+  | 'gbp'
+  | 'eur'
+  | 'xrp'
+  | 'ltc'
+  | 'eth'
+  | 'bch'
+  | 'pax'
+  | 'xlm'
+  | 'link'
+  | 'omg'
+  | 'usd'
+
+export const currencyPairs: [Currency, string][] = [
   ['btc','usd'],
   ['btc','eur'],
   ['btc','gbp'],
